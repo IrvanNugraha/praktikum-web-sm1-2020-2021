@@ -1,0 +1,60 @@
+.head{
+    background-color: black;
+    width: 100%;
+    height: 75px;
+}
+
+.head h2{
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.wp{
+    background: linear-gradient(red,black);
+}
+
+.contain{
+    background-color: white;
+    width: 800px;
+    margin: auto;
+}
+
+.box{
+    box-shadow: 4px 4px 2px 1px gray;
+    width: 700px;
+    margin: auto;
+    border: 3px solid black;
+}
+
+.box h3{
+    font-weight: bold;
+    margin: 5px;
+}
+
+.ins{
+    width: 600px;
+    position: relative;
+    left: 50px;
+}
+
+.foot{
+    background-color: black;
+    width: 100%;
+    height: 65px;
+}
+
+.ty{
+    margin: auto;
+    width: max-content;
+    position: relative;
+    top: 20px;
+}
+
+.foot h2{
+    color: white;
+    font-weight: bold;
+}
