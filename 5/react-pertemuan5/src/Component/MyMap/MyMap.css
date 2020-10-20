@@ -1,0 +1,19 @@
+.mapClass{
+    height: 400px;
+    width: 720px;
+    margin: auto;
+}
+
+@media screen and (max-width: 720px){
+    .mapClass{
+        width: 480px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .mapClass{
+        width: 360px;
+        height: 200px;
+    }
+}
