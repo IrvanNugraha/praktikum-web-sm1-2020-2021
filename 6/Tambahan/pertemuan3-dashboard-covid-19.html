@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Dashboard Covid 19 Indonesia. Data kasus per provinsi dan informasi lainnya terkait penanganan Covid 19">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <title>Dashboard Covid 19 Indonesia</title>
+
+    <link rel="stylesheet" href="pertemuan3-dashboard-covid-19.css">
+  </head>
+  <body>
+    <!--Script Perhitungan-->
+    <script type="text/javascript">
+      //Fungsi perhitungan persentase
+      function perhitunganPersentase(){
+        //Cek fungsi tereksekusi atau tidak di konsol
+        console.log("Fungsi yang dieksekusi perhitunganPersentase()");
+        
+        var k = document.getElementById("input-k").value;
+        
+        var t = document.getElementById("input-t").value;
+
+        var pk = (t/k)*(100);
+
+        document.getElementById("output-pk").textContent = pk + " %";
+        
+        var kond = "null";
+        if(pk >= 30 && pk <= 70){
+            kond = "WASPADA";
+        }else if(pk >> 70 && pk <= 100){
+            kond = "DARURAT";
+        }else if(pk >> 100){
+            kond = "OVER PASIEN";
+        }else{
+            kond = "AMAN";
+        }
+
+        document.getElementById("output-kond").innerHTML = kond;
+      }
+    </script>
+    <!-- API -->
+    <script type="text/javascript">
+      $.getJSON("https://api.kawalcorona.com/indonesia/", function(result){
+        console.log(result);
+        $.each(result, function(i){
+          document.getElementById("com").innerHTML = result[i].positif;
+          document.getElementById("sem").innerHTML = result[i].sembuh;
+          document.getElementById("det").innerHTML = result[i].meninggal;
+          document.getElementById("rawa").innerHTML = result[i].dirawat;
+        })
+      });
+    </script>
+    <div class="wrap-all">
+      <!-- Header dashboard -->
+      <header id="nav-atas" class="head">
+        <div class="container">
+          <div id="nav-atas-logo">
+            <div id="nav-atas-logo-tulisan">
+              <p>Dashboard COVID-19 Indonesia</p>
+            </div>
+          </div>
+          <ul class="navbar" id="nav-atas-menu">
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">Kasus</a>
+            </li>
+            <li>
+              <a href="#">Bantuan Sosial</a>
+            </li>
+            <li>
+              <a href="#">Donasi</a>
+            </li>
+            <li>
+              <a href="#">Kontak</a>
+            </li>
+            <li>
+              <a href="#" class="button" id="button-download-app">Download App</a>
+            </li>
+          </ul>
+          <button class="triger_b" onclick="toogleHandler()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Konten utama dashboard -->
+      <div id="konten">
+        <div class="wraper">
+          <div class="front">
+            <hr>
+            <h1>Dashboard Statistik Kasus COVID-19 Indonesia</h1>
+            <hr>
+          </div>
+          <section id="konten-rangkuman-kasus" class="main-content">
+            <hr>
+            <center><h3>Rangkuman Kasus</h3></center>
+            <hr>
+            <div class="round-box">
+              <h1 id="com"></h1>
+              <h4>Positif</h4>
+            </div>
+            <div class="round-box">
+              <h1 id="sem"></h1>
+              <h4>Sembuh</h4>
+            </div>
+            <div class="round-box">
+              <h1 id="det"></h1>
+              <h4>Meninggal</h4>
+            </div>
+            <div class="round-box">
+              <h1 id="rawa"></h1>
+              <h4>Dirawat</h4>
+            </div>
+            <hr>
+            <div class="conta">
+              <center><h5>Menghitung Persentase Keterisian Ranjang di Rumah Sakit</h5></center>
+              <hr>
+              <form>
+                <table>
+                  <tr>
+                    <td>Jumlah Total Ranjang di Rumah Sakit</td>
+                    <td><input id="input-k"></td>
+                  </tr>
+                  <tr>
+                    <td>Jumlah Total Ranjang di Rumah Sakit yang Terisi</td>
+                    <td><input id="input-t"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><input type="button" id="button-i" value="Kalkulasi" onclick="perhitunganPersentase()"></td>
+                  </tr>
+                  <tr>
+                    <td>Persentase Keterisian</td>
+                    <td><p id="output-pk"></p></td>
+                  </tr>
+                  <tr>
+                    <td>Kondisi</td>
+                    <td><p id="output-kond"></p></td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </section>
+          <hr>
+        </div>
+      </div>
+      
+      <!-- Bagian footer dari dashboard -->
+      <footer id="footer">
+        <p>Tim Pengelola Dashboard COVID-19 Indonesia</p>
+      </footer>
+    </div>
+    <!-- Script -->
+    <script>
+      function toogleHandler(){
+        var x = document.getElementById("nav-atas-menu");
+        var y = document.getElementById("nav-atas");
+        if(x.className === "navbar" && y.className === "head"){
+          x.className += " res"
+          y.className += " respon"
+        }else{
+          x.className = "navbar"
+          y.className = "head"
+        }
+      }
+    </script>
+  </body>
+</html> 
