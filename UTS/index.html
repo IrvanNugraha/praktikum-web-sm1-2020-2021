@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./src/img/pikobar.ico">
+    <title>Pikobar - Pusat Informasi dan Koordinasi COVID-19 Jawa Barat</title>
+    
+    <!-- Extend -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="./src/js/responsive.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/0d8e4b077e.js"></script>
+
+    <!-- GoogleFonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <!-- Scripts -->
+    <script>
+        function perhitunganPersen(){
+            var rt = document.getElementById("jrt").value;
+            var rk = document.getElementById("jrk").value;
+
+            console.log(rt + " " + rk);
+
+            var pr = (rt/rk)*(100);
+            document.getElementById("prt").textContent = pr + " %";
+
+
+            console.log(pr);
+            var kond;
+
+            if(pr <= 100 && pr > 70){
+                kond = "Darurat"
+            }else if(pr <= 70 && pr >= 30){
+                kond = "Waspada"
+            }else{
+                kond = "Aman"
+            }
+
+            document.getElementById("kond").textContent = kond;
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap-all"> 
+        <div class="header">
+            <div id="trigger_b" class="fa fa-bars" onclick="triggerButton()"></div>
+            <a href="/" class="logo">
+                <div class="wrap-logo">
+                    <img src="./src/img/pikobar.ico" alt="">
+                    <p>Pusat Informasi & Koordinasi COVID-19</p>
+                    <p>Provinsi Jawa Barat</p>
+                </div>
+            </a>
+            <ul id="nav-bar" class="navbar">
+                <a href="/home">
+                    <li class="nav short">Home</li>
+                </a>
+                <a href="/data">
+                    <li class="nav short">Data</li>
+                </a>
+                <a href="/berita">
+                    <li class="nav short">Berita</li>
+                </a>
+                <a href="/faq">
+                    <li class="nav short">FAQ</li>
+                </a>
+                <a href="/kontak">
+                    <li class="nav short">Kontak</li>
+                </a>
+                <a href="/donasi">
+                    <li class="nav short">Donasi</li>
+                </a>
+                <a href="bantuan">
+                    <li class="nav long">Bantuan Sosial</li>
+                </a>
+                <li class="fa fa-bell">
+                </li>
+                <a href="/downloadapp">
+                    <li class="nav long" id="DownApp">Download App</li>
+                </a>
+            </ul>
+        </div>
+        <section id="Announ" class="peng">
+            <div class="closing fa fa-window-close" onclick="closedAnnouncement()"></div>
+            <h3><div class="fa fa-exclamation"></div> Pengunguman</h3>
+            <p>Level kewaspadaan Jabar kini mengikuti zonasi dari Pemerintah Pusat. Lihat peta risiko di sini!</p>
+            <a href="/">Selengkapnya</a>
+        </section>
+        <section class="box-wrapper1">
+            <div style="height: fit-content;">
+                <a href="tel:119" target="_blank">
+                    <div class="round-box">
+                        <h6 style="font-weight: bolder;">Call Center</h6>
+                        <p>Nomor Darurat</p>
+                        <h3>119</h3>
+                    </div>
+                </a>
+                <a href="s.id/ChatbotPikobar" target="_blank">
+                    <div class="round-box" id="chatbot">
+                        <h6>Hotline Pikobar</h6>
+                        <p>Chat seputar COVID-19</p>
+                        <h3>Klik untuk Chat</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="content-wrap">
+            <hr>
+            <h3 style="font-weight: bolder;font-family: ROBOTO;">Daftar RumahSakit</h3>
+            <div class="srch">
+                <input type="text" placeholder="Cari kabupaten atau kota...">
+                <input value="Cari" class="btn btn-primary">
+                <input value="Reset" class="btn btn-danger">
+            </div>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <td colspan="1">No</td>
+                        <td>Kota/Kab</td>
+                        <td>RumahSakit</td>
+                        <td>Hotline</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>Bandung</td>
+                        <td>RumahSakit Hasan Sadikin</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h3 style="font-weight: bolder;">Perhitungan Persentase Ranjang dan Kondisinya</h3>
+            <hr>
+            <form>
+                <div class="form-wrap">
+                    <label for="jrk">Jumlah Ranjang Kosong</label>
+                    <input type="text" id="jrk">
+                </div>
+                <div class="form-wrap">
+                    <label for="jrt">Jumlah Ranjang Terisi</label>
+                    <input type="text" id="jrt">
+                </div>
+                <hr>
+                <input style="border-radius: 5px; border: none;" value="Hasil" type="button" onclick="perhitunganPersen()">
+                <h4>Persentase</h4>
+                <p id="prt">0 %</p>
+                <h4>Kondisi</h4>
+                <p id="kond">Belum Ada Data</p>
+            </form>
+        </section>
+        <hr>
+        <footer>
+            <div class="copyright">
+                <p style="color: #FFE6FF; font-size: 15px; font-weight: bolder;">&copy; Tim Satgas COVID-19</p>
+            </div>
+            <div class="icon-wrap">
+                <a href=""><li class="fa fa-facebook-official"></li></a>
+                <a href=""><li class="fa fa-google"></li></a>
+                <a href=""><li class="fa fa-instagram"></li></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
